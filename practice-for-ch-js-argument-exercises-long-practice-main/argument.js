@@ -83,3 +83,41 @@
 //   notMarkovSays("meow", "me");
 //   // Pavlov says meow to me!
 //   // true
+
+
+function curriedSum(numArgs) {
+    const nums = [];
+
+    return function _curriedSum(num) {
+        nums.push(num);
+        if (nums.length === numArgs) {
+            let sum = 0
+
+            nums.forEach(ele => {
+                sum += ele
+            })
+            return sum
+        } else {
+            return _curriedSum
+        }
+    };
+};
+
+Function.prototype.makeCurry = function(numArgs) {
+    const args = [];
+    const originalFunc = this;
+  
+    return function _curried(arg) {
+      args.push(arg);
+  
+      if (args.length >= numArgs) {
+        // return originalFunc.apply(null, args);
+        return originalFunc(...args)
+      } else {
+        return _curried;
+      }
+    }
+  };
+  
+const sum = curriedSum(4);
+console.log(sum(5)(30)(20)(1)); // => 56
