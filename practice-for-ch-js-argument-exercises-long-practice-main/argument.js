@@ -85,39 +85,79 @@
 //   // true
 
 
-function curriedSum(numArgs) {
-    const nums = [];
+// function curriedSum(numArgs) {
+//     const nums = [];
 
-    return function _curriedSum(num) {
-        nums.push(num);
-        if (nums.length === numArgs) {
-            let sum = 0
+//     return function _curriedSum(num) {
+//         nums.push(num);
+//         if (nums.length === numArgs) {
+//             let sum = 0
 
-            nums.forEach(ele => {
-                sum += ele
-            })
-            return sum
-        } else {
-            return _curriedSum
-        }
-    };
-};
+//             nums.forEach(ele => {
+//                 sum += ele
+//             })
+//             return sum
+//         } else {
+//             return _curriedSum
+//         }
+//     };
+// };
 
-Function.prototype.makeCurry = function(numArgs) {
-    const args = [];
-    const originalFunc = this;
+// Function.prototype.makeCurry = function(numArgs) {
+//     const args = [];
+//     const originalFunc = this;
   
-    return function _curried(arg) {
-      args.push(arg);
+//     return function _curried(arg) {
+//       args.push(arg);
   
-      if (args.length >= numArgs) {
-        // return originalFunc.apply(null, args);
-        return originalFunc(...args)
-      } else {
-        return _curried;
-      }
-    }
-  };
+//       if (args.length >= numArgs) {
+//         // return originalFunc.apply(null, args);
+//         return originalFunc(...args)
+//       } else {
+//         return _curried;
+//       }
+//     }
+//   };
   
-const sum = curriedSum(4);
-console.log(sum(5)(30)(20)(1)); // => 56
+// const sum = curriedSum(4);
+// console.log(sum(5)(30)(20)(1)); // => 56
+
+// Function.prototype.inherits = function (Parent) {
+//     function Surrogate (){};
+//     Surrogate.prototype = Parent.prototype;
+//     this.prototype = new Surrogate();
+//     this.prototype.constructor = this;
+// }
+
+// Function.prototype.inherits = function (Parent) {
+//     this.prototype = Object.create(Parent.prototype);
+//     this.prototype.constructor = this;
+// };
+
+// function MovingObject () {
+// };
+// MovingObject.prototype.moves = function() {
+//     console.log("I move");
+// };
+
+// function Ship () {
+// };
+// Ship.inherits(MovingObject);
+// Ship.prototype.ships = function() {
+//     console.log("I am a Ship");
+// };
+
+// function Asteroid () {
+// };
+// Asteroid.inherits(MovingObject);
+// Asteroid.prototype.asteroids = function () {
+//     console.log("Die dinosaurs!");
+//     };
+
+// const ship = new Ship();
+// const ast = new Asteroid();
+
+// console.log(ship.moves());
+// console.log(ast.moves());
+// console.log(ast.ships());
+// console.log(ship.asteroids());
